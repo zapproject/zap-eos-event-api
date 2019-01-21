@@ -22,7 +22,7 @@ async function getPossibleLostAnswer(id: number, subscriber: string, provider: s
 }
 
 router.post("/getresponsebyid", (req: Request, res: Response, next: NextFunction) => {
-  const listener = new Listener();
+  const listener: Listener = new Listener();
   let fullfilled = false;
 
   const promise = new Promise(async (resolve, reject) => {
@@ -34,11 +34,13 @@ router.post("/getresponsebyid", (req: Request, res: Response, next: NextFunction
       resp.data.responder === req.body.provider &&
       resp.data.subscriber === req.body.subscriber) {
         fullfilled = true;
+        listener.off();
         resolve(resp.data.params);
       }
     };
 
     listener.on("zap.main::respond", cb);
+
     getPossibleLostAnswer(req.body.id, req.body.subscriber, req.body.provider, req.body.timestamp).then((answer) => {
       if (answer && !fullfilled) {
         fullfilled = true;

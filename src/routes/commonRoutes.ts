@@ -1,15 +1,11 @@
-import {DemuxEventListener as Listener} from "@zapjs/eos-utils";
 import express from "express";
 const router = express.Router();
 import {getActionsList, getLast} from "./commonFunctions";
 const ObjectId = require("mongodb").ObjectID;
 import { NextFunction, Request, Response, Router} from "express";
+import config from "../config";
 
-const actions = [
-  "addendpoint", "newprovider", "bond", "unbond",
-  "estimate", "query", "cancelquery", "respond",
-  "subscribe", "unsubscribe"
-];
+const {actions} = config;
 
 router.get("/events/:action/all", async (req: Request, res: Response, next: NextFunction) => {
   if (
