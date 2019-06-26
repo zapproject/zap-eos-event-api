@@ -11,7 +11,6 @@ import {retranslate} from "./routes/socket/retranslate";
 const app = express();
 export const server = require('http').Server(app);
 
-
 retranslate(app, server, config.netUrl, config.contract);
 app.use(logger("dev"));
 app.use(express.json());

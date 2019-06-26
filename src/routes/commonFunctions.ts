@@ -12,6 +12,7 @@ async function getCollection(action: string) {
   const client = await MongoClient.connect(url, { useNewUrlParser: true });
   const db = client.db(dbName);
   const collection = db.collection(action);
+  console.log(await collection.countDocuments());
   return collection;
 }
 export async function getLast(action: string) {

@@ -5,9 +5,10 @@ const config = {
     "subscribe", "unsubscribe"
   ],
   baseKeepTime: 180,
-  contract: "zap.main",
+  contract: "zapcoretest1",
   mongoUrl: "mongodb://172.17.0.2:27017",
-  netUrl: "http://127.0.0.1:8888"
+  netUrl: "http://jungle2.cryptolions.io:80"
+ // netUrl: "http://127.0.0.1:8888"
 };
 
 export default config;

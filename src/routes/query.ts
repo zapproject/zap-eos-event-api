@@ -39,7 +39,7 @@ router.post("/getresponsebyid", (req: Request, res: Response, next: NextFunction
       }
     };
 
-    listener.on("zap.main::respond", cb);
+    listener.on(`${config.contract}::respond`, cb);
 
     getPossibleLostAnswer(req.body.id, req.body.subscriber, req.body.provider, req.body.timestamp).then((answer) => {
       if (answer && !fullfilled) {
