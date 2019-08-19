@@ -10,6 +10,9 @@ export const retranslate = async(app: any, server: any, net: string, contract: s
       socket.emit("start", { message: `You are listening the '${contract}::${action}' events` }));
       new Listener().on(`${contract}::${action}`, (err: any, data: any) => {
         console.log("data", data)
+        if (err) {
+          newsocket.emit("err", {data: err});
+        }
         newsocket.emit("data", {data});
       });
     });
